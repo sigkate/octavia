@@ -269,7 +269,7 @@ the caller to free, but that is a reasonable price to pay for safety and
 high-level semantics. Here are some examples of its use:
 
       // strcat-like:
-      char * greeting = format("Hello, %s\n", getName());
+      char * greeting = format("Hello, %s\n", get_name());
       // ...
       free(greeting);
 
