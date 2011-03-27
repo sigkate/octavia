@@ -1,7 +1,7 @@
 All Octavia source code files (*.c, *.h, *.js, *.css, *.py, *.sh) are
-copyright © 2009 – 2011 by Chris Palmer <chris@noncombatant.org>. The code
-and documentation is released under the terms of the GNU General Public
-License, version 2.
+copyright © 2009 – 2011 by Chris Palmer <chris@noncombatant.org>. Most of
+the code is released under the terms of the GNU General Public License,
+version 2; but note that some files are simply public domain.
 
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
