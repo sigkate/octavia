@@ -4,7 +4,7 @@ CFLAGS += -D__FreeBSD__=10 -D_FILE_OFFSET_BITS=64 -Wall -Wextra -O2 -Werror -ans
 LDFLAGS += -L/usr/local/ssl/lib -lcrypto -lfuse
 
 SOURCES = octavia.c octavia-fuse.c util.c
-HEADERS = minunit.h octavia.h util.h
+HEADERS = octavia.h util.h
 
 8va: $(SOURCES) $(HEADERS)
 	$(CC) -o $@ $(CFLAGS) $(SOURCES) $(LDFLAGS)
