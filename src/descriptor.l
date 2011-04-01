@@ -28,7 +28,7 @@ nl \n
 
 %%
 
-space ;
+{space} ;
 
 protocol-version {
       return ProtocolVersion;
@@ -54,7 +54,7 @@ version {
       return Version;
 }
 
-quoted_string {
+{quoted_string} {
       yylval.s = strdup(yytext + 1);
 
       if ('"' != yylval.s[yyleng - 2])
