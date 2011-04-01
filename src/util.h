@@ -51,7 +51,14 @@ typedef enum {
 #define dynamic
 
 
+/**
+ * Return the lesser of x and y.
+ */
 #define min(x, y) ((x) <= (y) ? (x) : (y))
+
+/**
+ * Return the greater of x and y.
+ */
 #define max(x, y) ((x) >= (y) ? (x) : (y))
 
 
