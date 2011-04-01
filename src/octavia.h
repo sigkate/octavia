@@ -17,7 +17,8 @@ enum {
       NonceSize          = 16,
       CipherBlockSize    = 16,
       DefaultSegmentSize = 4096,
-      MaxDataSize        = 0xffff
+      MaxDataSize        = 0xffff,
+      HostnameSize       = 256
 } Sizes;
 
 
