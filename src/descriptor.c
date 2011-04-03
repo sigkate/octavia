@@ -58,13 +58,11 @@ dynamic Descriptor * new_descriptor(uint8_t protocol_version,
                                     Endpoint * endpoints, Description * descriptions,
                                     Descriptor * next)
 {
-      if (! encryption_key)
-            return Null;
-
       Descriptor * d = allocate(1, sizeof *d);
 
       d->protocol_version = protocol_version;
-      memcpy(d->encryption_key, encryption_key, KeySize);
+      if (encryption_key)
+            memcpy(d->encryption_key, encryption_key, KeySize);
       d->endpoints = endpoints;
       d->descriptions = descriptions;
       d->next = next;
