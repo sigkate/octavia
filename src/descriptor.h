@@ -32,10 +32,10 @@ dynamic Segment * new_segment(uint16_t size, uint8_t hash [HashSize], Segment * 
  * descriptor. Perhaps someday we will support more types (e.g. symbolic
  * links, dynamic descriptor services, et c.).
  */
-typedef enum {
+typedef int /*enum {
       File = 0,
       Directory = 1
-} FileType;
+} */FileType;
 
 
 /**
@@ -48,7 +48,7 @@ typedef struct Description {
       uint64_t size;
       int64_t mtime;
       Segment * segments;
-      Description * next;
+      struct Description * next;
 } Description;
 
 /**
@@ -102,6 +102,13 @@ dynamic Descriptor * new_descriptor(uint8_t protocol_version,
                                     uint8_t encryption_key [KeySize],
                                     Endpoint * endpoints, Description * descriptions,
                                     Descriptor * next);
+
+
+/**
+ * Given the text of a descriptor, parses it and returns a live Descriptor
+ * object.
+ */
+Descriptor * parse_descriptor(const char * expression);
 
 #endif
 
