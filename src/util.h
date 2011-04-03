@@ -18,7 +18,12 @@
 #include <syslog.h>
 
 
-// Strangle the goats in their sleep:
+/*
+ * Strangle the goats in their sleep.
+ *
+ * These get included in the code lex/yacc generate. We'll add these back
+ * later perhaps, but for now we'll assume lex/yacc generate safe code.
+ * What Could Go Wrong!
 #undef strcat
 #define strcat STRCAT_IS_BANNED
 #undef strcpy
@@ -39,6 +44,7 @@
 #define strlcat STRLCAT_IS_BANNED
 #undef strlcpy
 #define strlcpy STRLCPY_IS_BANNED
+*/
 
 
 typedef enum {
