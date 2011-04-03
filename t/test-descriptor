@@ -1,0 +1,15 @@
+protocol-version 0
+encryption-key deadbeefdeadbeefdeadbeefdeadbeef
+endpoints 127.0.0.1:55555 octavia.wieldysoftware.com:55555
+noodle.doodle:1234 10.1.2.3:9999
+f readme.txt 1502 4ac7ff2d
+    400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+    400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+    400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+    400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+    400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+    102 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+d stuff 457 4ac7ff2d
+    457 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+version erdbei.local-1176 4ac7ff3d
+
