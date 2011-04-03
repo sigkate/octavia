@@ -23,14 +23,14 @@ enum {
 
 
 typedef enum {
-      StorageRequest     = 0,
-      StorageResponse    = 1,
-      RetrievalRequest   = 2,
-      RetrievalResponse  = 3,
-      DeletionRequest    = 4,
-      DeletionResponse   = 5,
-      ExistenceRequest   = 6,
-      ExistenceResponse  = 7
+      StorageRequestMessage     = 0,
+      StorageResponseMessage    = 1,
+      RetrievalRequestMessage   = 2,
+      RetrievalResponseMessage  = 3,
+      DeletionRequestMessage    = 4,
+      DeletionResponseMessage   = 5,
+      ExistenceRequestMessage   = 6,
+      ExistenceResponseMessage  = 7
 } MessageType;
 
 //
@@ -144,7 +144,7 @@ Boolean is_directory(const char * path);
 /**
  * Search d for a file or directory named name.
  */
-File * search(Directory * d, char * name);
+//File * search(Directory * d, char * name);
 
 #endif
 
