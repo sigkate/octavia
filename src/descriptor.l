@@ -20,6 +20,8 @@
  */
 int yyparse(void);
 
+extern Descriptor * result;
+
 %}
 
 space [ \t]+
@@ -98,4 +100,21 @@ version {
 }
 
 %%
+
+Descriptor * parse_descriptor(const char * expression) {
+      if (! expression || ! *expression) {
+            errno = EINVAL;
+            return 0;
+      }
+
+      result = new_descriptor(0, Null, Null, Null, Null);
+
+      YY_BUFFER_STATE st = yy_scan_string(expression);
+
+      yyparse();
+      yy_delete_buffer(st);
+
+      errno = 0;
+      return result;
+}
 

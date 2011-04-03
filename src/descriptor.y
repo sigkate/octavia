@@ -13,6 +13,9 @@
 void yyerror(char const * message) {
       logger(Error, "%s", message);
 }
+
+Descriptor * result;
+
 %}
 
 %union {
