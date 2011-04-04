@@ -10,5 +10,5 @@ HEADERS = octavia.h util.h
 	$(CC) -o $@ $(CFLAGS) $(SOURCES) $(LDFLAGS)
 
 clean:
-	-rm 8va *.pb.{cc,h}
+	-rm 8va lex.yy.c y.tab.[ch]
 
