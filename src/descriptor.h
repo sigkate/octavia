@@ -70,6 +70,8 @@ dynamic Description * new_description(FileType type, uint64_t size, int64_t mtim
  */
 typedef struct Endpoint {
       uint16_t port;
+      // TODO: We don't actually support netmask in the parser or serializer
+      // yet. But we will... oh, we *will*. Until then, it's /32 or /128.
       uint16_t netmask;
       char name [HostnameSize + 1];
       struct Endpoint * next;
@@ -83,6 +85,16 @@ dynamic Endpoint * new_endpoint(uint16_t port, uint16_t netmask,
 
 
 /**
+ * Describes this version of the descriptor: mtime and a descriptive
+ * bareword (usually hostname of the host that created this descriptor).
+ */
+typedef struct {
+      char * name;
+      int64_t mtime;
+} Version;
+
+
+/**
  * A complete directory descriptor.
  *
  * Can be the head of a list (next).
@@ -92,23 +104,34 @@ typedef struct Descriptor {
       uint8_t encryption_key [KeySize];
       Endpoint * endpoints;
       Description * descriptions;
+      Version version;
       struct Descriptor * next;
 } Descriptor;
 
 /**
  * Create a new Descriptor.
  */
+// XXX And we need descriptor version here too!
 dynamic Descriptor * new_descriptor(uint8_t protocol_version,
                                     uint8_t encryption_key [KeySize],
                                     Endpoint * endpoints, Description * descriptions,
-                                    Descriptor * next);
+                                    Version version, Descriptor * next);
 
 
 /**
  * Given the text of a descriptor, parses it and returns a live Descriptor
- * object.
+ * object. Parse failures are fatal errors, in which case this function will
+ * not return.
  */
 Descriptor * parse_descriptor(const char * expression);
+
+
+/**
+ * Writes the descriptor to a file (in the format that parse_descriptor
+ * expects). Returns 0 on success, -1 on failure.
+ */
+int serialize_descriptor(const Descriptor * descriptor, FILE * file);
+
 
 #endif
 
