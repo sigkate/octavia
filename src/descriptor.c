@@ -56,7 +56,7 @@ dynamic Endpoint * new_endpoint(uint16_t port, uint16_t netmask,
 dynamic Descriptor * new_descriptor(uint8_t protocol_version,
                                     uint8_t encryption_key [KeySize],
                                     Endpoint * endpoints, Description * descriptions,
-                                    Descriptor * next)
+                                    Version version, Descriptor * next)
 {
       Descriptor * d = allocate(1, sizeof *d);
 
@@ -68,5 +68,47 @@ dynamic Descriptor * new_descriptor(uint8_t protocol_version,
       d->next = next;
 
       return d;
+}
+
+
+int serialize_descriptor(const Descriptor * descriptor, FILE * file) {
+      if (! descriptor || ! file)
+            return -1;
+
+      fprintf(file, "protocol-version %hhu\n", descriptor->protocol_version);
+
+      fprintf(file, "encryption-key ");
+      for (size_t i = 0; i < KeySize; i++)
+            fprintf(file, "%02hhx", descriptor->encryption_key[i]);
+      wprintf(file, "\n");
+
+      fprintf(file, "endpoints ");
+      Endpoint * e = descriptor->endpoints;
+      while (e) {
+            fprintf(file, "%s:%hu ", e->name, e->port);
+            e = e->next;
+      }
+      fprintf(file, "\n");
+
+      Description * d = descriptor->descriptions;
+      while (d) {
+            fprintf(file, "%c %llx %llx\n",
+                    File == d->type ? 'f' : 'd', d->size, d->mtime);
+
+            Segment * s = d->segments;
+            while (s) {
+                  fprintf(file, " %hu ", s->size);
+                  for (size_t i = 0; i < HashSize; i++)
+                        fprintf(file, "%02hhx", s->hash[i]);
+
+                  fprintf(file, "\n");
+                  s = s->next;
+            }
+
+            d = d->next;
+      }
+
+      fprintf(file, "version %s %llx\n",
+              descriptor->version.name, descriptor->version.mtime);
 }
 
