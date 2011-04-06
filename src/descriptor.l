@@ -33,27 +33,27 @@ nl \n
 {space} ;
 
 protocol-version {
-      return ProtocolVersion;
+      return ProtocolVersionT;
 }
 
 encryption-key {
-      return EncryptionKey;
+      return EncryptionKeyT;
 }
 
 endpoints {
-      return Endpoints;
+      return EndpointsT;
 }
 
 f {
-      return File;
+      return FileT;
 }
 
 d {
-      return Directory;
+      return DirectoryT;
 }
 
 version {
-      return Version;
+      return VersionT;
 }
 
 {quoted_string} {
@@ -64,7 +64,7 @@ version {
       else
             yylval.s[yyleng - 2] = '\0';
 
-      return QuotedString;
+      return QuotedStringT;
 }
 
 [A-Fa-f0-9]{1,16} {
@@ -79,19 +79,19 @@ version {
        * Additionally, assert that the entire yytext was valid.
        */
       if (errno || i > SIZE_MAX || '\0' != *end) {
-            logger(Error, "Invalid integer value '%s'", yytext);
+            logger(Error, "Invalid integer literal '%s'", yytext);
             yylval.i = 0;
             return 0;
       }
 
       yylval.i = (int64_t) i;
 
-      return IntegerValue;
+      return IntegerValueT;
 }
 
 [A-Za-z_0-9\.]+ {
       yylval.s = strdup(yytext);
-      return BareWord;
+      return BareWordT;
 }
 
 \n  |
@@ -107,7 +107,8 @@ Descriptor * parse_descriptor(const char * expression) {
             return 0;
       }
 
-      result = new_descriptor(0, Null, Null, Null, Null);
+      Version v = { "XXX TODO", 0 };
+      result = new_descriptor(0, Null, Null, Null, v, Null);
 
       YY_BUFFER_STATE st = yy_scan_string(expression);
 

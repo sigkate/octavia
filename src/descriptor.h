@@ -32,10 +32,10 @@ dynamic Segment * new_segment(uint16_t size, uint8_t hash [HashSize], Segment * 
  * descriptor. Perhaps someday we will support more types (e.g. symbolic
  * links, dynamic descriptor services, et c.).
  */
-typedef int /*enum {
+typedef enum {
       File = 0,
       Directory = 1
-} */FileType;
+} FileType;
 
 
 /**

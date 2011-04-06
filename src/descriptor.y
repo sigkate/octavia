@@ -23,9 +23,9 @@ Descriptor * result;
       char * s;
 }
 
-%token ProtocolVersion EncryptionKey Endpoints File Directory Version
-%token <i> IntegerValue
-%token <s> QuotedString BareWord Hostname
+%token ProtocolVersionT EncryptionKeyT EndpointsT FileT DirectoryT VersionT
+%token <i> IntegerValueT
+%token <s> QuotedStringT BareWordT HostnameT
 
 /*%type <i> integer_value */
 
@@ -34,37 +34,37 @@ Descriptor * result;
 descriptor: protocol_version encryption_key endpoints descriptions version
       ;
 
-protocol_version: ProtocolVersion IntegerValue
+protocol_version: ProtocolVersionT IntegerValueT
       ;
 
-encryption_key: EncryptionKey BareWord
+encryption_key: EncryptionKeyT BareWordT
       ;
 
 endpoints: endpoint
       | endpoint endpoints  
       ;
 
-endpoint: Hostname ':' IntegerValue
+endpoint: HostnameT ':' IntegerValueT
       ;
 
 descriptions: description
       | description descriptions
       ;
 
-description: description_type QuotedString IntegerValue IntegerValue segments
+description: description_type QuotedStringT IntegerValueT IntegerValueT segments
       ;
 
 segments: segment
       | segment segments
       ;
 
-segment: IntegerValue BareWord
+segment: IntegerValueT BareWordT
       ;
 
-description_type: File | Directory
+description_type: FileT | DirectoryT
       ;
 
-version: Version Hostname IntegerValue
+version: VersionT HostnameT IntegerValueT
       ;
 
 %%

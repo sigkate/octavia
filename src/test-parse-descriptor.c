@@ -25,8 +25,11 @@ dynamic char * get_data(const char * pathname) {
 int main(int count, char * arguments []) {
       for (int i = 1; i < count; i++) {
             char * data = get_data(arguments[i]);
+
             Descriptor * d = parse_descriptor(data);
             printf("%p\n", d);
+            serialize_descriptor(d, stdout);
+
             free(data);
             free(d);
       }
