@@ -26,7 +26,7 @@ dynamic Description * new_description(FileType type, uint64_t size, const char *
       Description * d = allocate(1, sizeof *d);
 
       d->type = type;
-      d->name = format("%s", name);
+      d->name = name;
       d->size = size;
       d->mtime = mtime;
       d->segments = segments;
