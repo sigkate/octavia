@@ -24,7 +24,7 @@ extern Descriptor * result;
 
 %}
 
-space [ \t]+
+space [ \t\n]+
 quoted_string \"[^\"\n]*[\"\n]
 nl \n
 
@@ -57,7 +57,7 @@ version {
 }
 
 {quoted_string} {
-      yylval.s = strdup(yytext + 1);
+      yylval.s = format("%s", yytext + 1);
 
       if ('"' != yylval.s[yyleng - 2])
             logger(Error, "Unterminated quoted string '%s'", yytext);
@@ -90,12 +90,11 @@ version {
 }
 
 [A-Za-z_0-9\.]+ {
-      yylval.s = strdup(yytext);
+      yylval.s = format("%s", yytext);
       return BareWordT;
 }
 
-\n  |
-.  {
+. {
       return yytext[0];
 }
 
