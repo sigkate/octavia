@@ -1,5 +1,5 @@
-protocol-version 0
-encryption-key deadbeefdeadbeefdeadbeefdeadbeef
+protocol-version 1
+encryption-key deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
 endpoints 127.0.0.1:55555 octavia.noncombatant.org:55555 noodle.doodle:1234 10.1.2.3:9999
 f "readme.txt" 1502 4ac7ff2d
     400 deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef
