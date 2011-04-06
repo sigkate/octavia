@@ -45,6 +45,7 @@ typedef enum {
  */
 typedef struct Description {
       FileType type;
+      char * name;
       uint64_t size;
       int64_t mtime;
       Segment * segments;
@@ -54,8 +55,8 @@ typedef struct Description {
 /**
  * Create a new Description.
  */
-dynamic Description * new_description(FileType type, uint64_t size, int64_t mtime,
-                                      Segment * segments, Description * next);
+dynamic Description * new_description(FileType type, const char * name, uint64_t size,
+                                      int64_t mtime, Segment * segments, Description * next);
 
 
 /**

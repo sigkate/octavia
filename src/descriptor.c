@@ -20,12 +20,13 @@ dynamic Segment * new_segment(uint16_t size, uint8_t hash [HashSize], Segment * 
 }
 
 
-dynamic Description * new_description(FileType type, uint64_t size, int64_t mtime,
-                                      Segment * segments, Description * next)
+dynamic Description * new_description(FileType type, uint64_t size, const char * name,
+                                      int64_t mtime, Segment * segments, Description * next)
 {
       Description * d = allocate(1, sizeof *d);
 
       d->type = type;
+      d->name = format("%s", name);
       d->size = size;
       d->mtime = mtime;
       d->segments = segments;
