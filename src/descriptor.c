@@ -80,7 +80,7 @@ int serialize_descriptor(const Descriptor * descriptor, FILE * file) {
       fprintf(file, "encryption-key ");
       for (size_t i = 0; i < KeySize; i++)
             fprintf(file, "%02hhx", descriptor->encryption_key[i]);
-      wprintf(file, "\n");
+      fprintf(file, "\n");
 
       fprintf(file, "endpoints ");
       Endpoint * e = descriptor->endpoints;
